@@ -10,6 +10,8 @@ import ChatPage from './pages/ChatPage';
 import SearchPage from './pages/SearchPage';
 import ListProductPage from './pages/ListProductPage';
 import LoginPage from './pages/LoginPage';
+import WalletsPage from './pages/WalletsPage';
+import ApiDocsPage from './pages/ApiDocsPage';
 
 function Router() {
   const { nav } = useApp();
@@ -36,6 +38,10 @@ function Router() {
         return <ListProductPage />;
       case 'login':
         return <LoginPage />;
+      case 'wallets':
+        return <WalletsPage />;
+      case 'api-docs':
+        return <ApiDocsPage />;
       default:
         return <HomePage />;
     }

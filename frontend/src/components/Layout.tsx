@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import {
   Search, ShoppingCart, MessageCircle, User, Menu, X, LayoutDashboard,
-  Store, ChevronDown, Bitcoin, Zap
+  Store, ChevronDown, Bitcoin, Zap, Wallet, Code
 } from 'lucide-react';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -63,6 +63,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-1">
               <button
+                onClick={() => navigate({ page: 'wallets' })}
+                title="My Wallets"
+                className={`relative p-2.5 rounded-lg transition-colors ${nav.page === 'wallets' ? 'bg-accent/20 text-accent' : 'text-gray-400 hover:text-white hover:bg-dark-700'}`}
+              >
+                <Wallet size={20} />
+              </button>
+
+              <button
+                onClick={() => navigate({ page: 'api-docs' })}
+                title="API Docs"
+                className={`relative p-2.5 rounded-lg transition-colors ${nav.page === 'api-docs' ? 'bg-accent/20 text-accent' : 'text-gray-400 hover:text-white hover:bg-dark-700'}`}
+              >
+                <Code size={20} />
+              </button>
+
+              <button
                 onClick={() => navigate({ page: 'chat' })}
                 className={`relative p-2.5 rounded-lg transition-colors ${nav.page === 'chat' ? 'bg-accent/20 text-accent' : 'text-gray-400 hover:text-white hover:bg-dark-700'}`}
               >
@@ -111,6 +127,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         <button onClick={() => { navigate({ page: 'dashboard' }); setUserMenuOpen(false); }} className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-gray-300 hover:bg-dark-600 rounded-lg transition-colors">
                           <LayoutDashboard size={16} /> Dashboard
                         </button>
+                        <button onClick={() => { navigate({ page: 'wallets' }); setUserMenuOpen(false); }} className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-gray-300 hover:bg-dark-600 rounded-lg transition-colors">
+                          <Wallet size={16} /> My Wallets
+                        </button>
+                        <button onClick={() => { navigate({ page: 'api-docs' }); setUserMenuOpen(false); }} className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-gray-300 hover:bg-dark-600 rounded-lg transition-colors">
+                          <Code size={16} /> API Docs
+                        </button>
                         <button onClick={() => { navigate({ page: 'seller', sellerId: 'currentUser' }); setUserMenuOpen(false); }} className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-gray-300 hover:bg-dark-600 rounded-lg transition-colors">
                           <Store size={16} /> My Store
                         </button>
@@ -153,6 +175,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="md:hidden border-t border-dark-600 bg-dark-800 p-4 space-y-2">
             <button onClick={() => { navigate({ page: 'home' }); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-2.5 rounded-lg text-gray-300 hover:bg-dark-700">🏠 Home</button>
             <button onClick={() => { navigate({ page: 'dashboard' }); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-2.5 rounded-lg text-gray-300 hover:bg-dark-700">📊 Dashboard</button>
+            <button onClick={() => { navigate({ page: 'wallets' }); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-2.5 rounded-lg text-gray-300 hover:bg-dark-700">👛 My Wallets</button>
+            <button onClick={() => { navigate({ page: 'api-docs' }); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-2.5 rounded-lg text-gray-300 hover:bg-dark-700">📖 API Docs</button>
             <button onClick={() => { navigate({ page: 'chat' }); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-2.5 rounded-lg text-gray-300 hover:bg-dark-700">💬 Messages</button>
             <button onClick={() => { navigate({ page: 'cart' }); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-2.5 rounded-lg text-gray-300 hover:bg-dark-700">🛒 Cart ({cartItemCount})</button>
             <button onClick={() => { navigate({ page: 'list-product' }); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-2.5 rounded-lg text-gray-300 hover:bg-dark-700">📦 List Product</button>
@@ -198,6 +222,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div>
               <h4 className="font-semibold text-white mb-3 text-sm">Crypto Payments</h4>
+              <ul className="space-y-2 text-sm text-gray-400 mb-3">
+                <li><button onClick={() => navigate({ page: 'wallets' })} className="hover:text-accent transition-colors">My Wallets</button></li>
+                <li><button onClick={() => navigate({ page: 'api-docs' })} className="hover:text-accent transition-colors">API Docs</button></li>
+              </ul>
               <div className="flex flex-wrap gap-2 mb-3">
                 <span className="px-2 py-1 rounded-md bg-crypto-btc/20 text-crypto-btc text-xs font-medium">BTC</span>
                 <span className="px-2 py-1 rounded-md bg-crypto-eth/20 text-crypto-eth text-xs font-medium">ETH</span>

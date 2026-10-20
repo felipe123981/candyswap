@@ -79,4 +79,4 @@ export interface Order {
   createdAt: string;
 }
 
-export type Page = 'home' | 'product' | 'seller' | 'dashboard' | 'cart' | 'checkout' | 'chat' | 'login' | 'search' | 'list-product';
+export type Page = 'home' | 'product' | 'seller' | 'dashboard' | 'cart' | 'checkout' | 'chat' | 'login' | 'search' | 'list-product' | 'wallets' | 'api-docs';
